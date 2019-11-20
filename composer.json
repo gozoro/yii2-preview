@@ -1,0 +1,24 @@
+{
+	"name": "gozoro/yii2-preview",
+	"description": "Yii2 component for resizing, cropping and creating preview image and saving to cache folder.",
+	"keywords":["yii2", "image","resize","crop", "resizing", "cropping", "preview"],
+	"homepage": "https://github.com/gozoro/yii2-preview",
+	"type": "yii2-extension",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Gozoro",
+			"email": "gozoro@yandex.ru"
+		}
+	],
+	"require": {
+		"php": ">=5.5.9",
+		"yiisoft/yii2": "~2.0.0",
+		"gozoro/image": "~0.0.1"
+	},
+	"autoload": {
+		"psr-4": {
+			"gozoro\\preview\\": "src"
+		}
+	}
+}
