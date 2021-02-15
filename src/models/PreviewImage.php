@@ -121,6 +121,20 @@ class PreviewImage extends \gozoro\image\Image
 	}
 
 	/**
+	 * Returns orientation name
+	 * @return string 'portrait' | 'landscape' | 'square'
+	 */
+	public function getOrientationName()
+	{
+		if($this->isSquare())
+			return 'square';
+		elseif($this->isLandscape())
+			return 'landscape';
+		else
+			return 'portrait';
+	}
+
+	/**
 	 * Resizing image.
 	 *
 	 * @param int $maxWidth max width to resizing (px)
@@ -139,7 +153,7 @@ class PreviewImage extends \gozoro\image\Image
 			'args'   => [$maxWidth, $maxHeight, (int)$keepAspectRatio, (int)$allowUpscaling]
 		];
 
-		return $this;
+		return parent::resize($maxWidth, $maxHeight, $keepAspectRatio, $allowUpscaling);
 	}
 
 	/**
@@ -158,7 +172,7 @@ class PreviewImage extends \gozoro\image\Image
 			'args'   => [$width, $height, $src_x, $src_y]
 		];
 
-		return $this;
+		return parent::crop($width, $height, $src_x, $src_y);
 	}
 
 	/**
@@ -174,27 +188,6 @@ class PreviewImage extends \gozoro\image\Image
 		}
 
 		return $this;
-	}
-
-	/**
-	 * Runs all operations on the image.
-	 */
-	protected function runOperations()
-	{
-		foreach($this->operations as $operation)
-		{
-			$method = $operation['method'];
-			$args   = $operation['args'];
-
-			if($method == 'resize')
-			{
-				parent::resize($args[0], $args[1], $args[2], $args[3]);
-			}
-			elseif($method == 'crop')
-			{
-				parent::crop($args[0], $args[1], $args[2], $args[3]);
-			}
-		}
 	}
 
 	/**
@@ -260,8 +253,6 @@ class PreviewImage extends \gozoro\image\Image
 			'filename'  => $filename,
 			'extension' => self::parseExtension($filename)
 		);
-
-		$this->runOperations();
 
 		return parent::saveAs($filename);
 	}
