@@ -85,19 +85,16 @@ class PreviewImage extends \gozoro\image\Image
 		{
 			if(file_exists($defaultPreview))
 			{
-				$ext = self::parseExtension($defaultPreview);
+				$ext            = self::parseExtension($defaultPreview);
+				$this->filename = $defaultPreview;
 
-				switch($ext)
+				if(in_array($ext, ['jpg', 'jpeg', 'png', 'gif']))
 				{
-					case 'jpg':
-					case 'jpeg':
-						return imagecreatefromjpeg($defaultPreview);
-					case 'png':
-						return imagecreatefrompng($defaultPreview);
-					case 'gif':
-						return imagecreatefromgif($defaultPreview);
-					default:
-						$this->throwException("Unknow default preview image format - $ext.");
+					return $this->createImage();
+				}
+				else
+				{
+					$this->throwException("Preview image must be jpg, jpeg, png or gif.");
 				}
 			}
 			else
