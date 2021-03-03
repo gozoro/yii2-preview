@@ -39,6 +39,13 @@ class Preview extends yii\base\Component
 	public $mode = 0664;
 
 
+	/**
+	 * Filename to default preview image
+	 * @var string
+	 */
+	public $defaultPreview;
+
+
 	protected $filename;
 
 

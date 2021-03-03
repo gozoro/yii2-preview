@@ -74,6 +74,46 @@ class PreviewImage extends \gozoro\image\Image
 	}
 
 	/**
+	 * Creating image resource for default preview
+	 * @return resource
+	 */
+	protected function createDefaultImage()
+	{
+		$defaultPreview = $this->component->defaultPreview;
+
+		if($defaultPreview)
+		{
+			if(file_exists($defaultPreview))
+			{
+				$ext = self::parseExtension($defaultPreview);
+
+				switch($ext)
+				{
+					case 'jpg':
+					case 'jpeg':
+						return imagecreatefromjpeg($defaultPreview);
+					case 'png':
+						return imagecreatefrompng($defaultPreview);
+					case 'gif':
+						return imagecreatefromgif($defaultPreview);
+					default:
+						$this->throwException("Unknow default preview image format - $ext.");
+				}
+			}
+			else
+			{
+				$this->throwException("Default preview not exists.");
+			}
+		}
+		else
+		{
+			$ext = self::parseExtension($this->filename);
+			$this->throwException("Unknow image format - $ext.");
+		}
+	}
+
+
+	/**
 	 * Returns original image file.
 	 * @return string
 	 */
