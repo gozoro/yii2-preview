@@ -79,7 +79,7 @@ class PreviewImage extends \gozoro\image\Image
 	 */
 	protected function createDefaultImage()
 	{
-		$defaultPreview = $this->component->defaultPreview;
+		$defaultPreview = Yii::getAlias($this->component->defaultPreview);
 
 		if($defaultPreview)
 		{
