@@ -21,7 +21,7 @@ class PreviewImage extends \gozoro\image\Image
 
 	/**
 	 * Stores a pointer to a component.
-	 * @var \gozoro\preview\components\Preview
+	 * @var \gozoro\preview\PreviewComponent
 	 */
 	private $component;
 
@@ -64,10 +64,10 @@ class PreviewImage extends \gozoro\image\Image
 
 	/**
 	 *
-	 * @param \gozoro\preview\components\Preview $component
+	 * @param \gozoro\preview\PreviewComponent $component
 	 * @return static
 	 */
-	public function setComponent(\gozoro\preview\components\Preview $component)
+	public function setComponent(\gozoro\preview\PreviewComponent $component)
 	{
 		$this->component = $component;
 		return $this;

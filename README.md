@@ -19,9 +19,10 @@ Configuration
 	...
 
 	'preview' => [
-		'class' => 'gozoro\preview\components\Preview',
+		'class' => 'gozoro\preview\PreviewComponent',
 		'previewPath' => '/var/www/site/www/preview_cache',
 		'previewWebPath' => '/preview_cache',
+		'defaultPreview' => 'default.jpg',
 	],
 
 	...
@@ -59,7 +60,7 @@ Configuration for PDF
 	...
 
 	'preview' => [
-		'class' => 'gozoro\preview\components\Preview',
+		'class' => 'gozoro\preview\PreviewComponent',
 		'previewPath' => '/var/www/site/www/preview_cache',
 		'previewWebPath' => '/preview_cache',
 		'on beforeOpen' => function($event)

@@ -1,6 +1,6 @@
 <?php
 
-namespace gozoro\preview\components;
+namespace gozoro\preview;
 
 use Yii;
 use gozoro\preview\models\PreviewImage;
@@ -10,7 +10,7 @@ use gozoro\preview\models\Event;
  * Preview component.
  * @author gozoro <gozoro@yandex.ru>
  */
-class Preview extends yii\base\Component
+class PreviewComponent extends yii\base\Component
 {
 	const EVENT_BEFORE_OPEN = 'beforeOpen';
 	const EVENT_AFTER_OPEN  = 'afterOpen';
