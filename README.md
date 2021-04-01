@@ -1,5 +1,6 @@
 # yii2-preview
-Yii2 component for resizing, cropping and creating preview image and saving to cache folder
+Yii2 component for resizing, cropping and creating preview image and saving to cache folder.
+Used only GD library.
 
 Installation
 ------------

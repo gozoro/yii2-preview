@@ -85,16 +85,16 @@ class PreviewImage extends \gozoro\image\Image
 		{
 			if(file_exists($defaultPreview))
 			{
-				$ext            = self::parseExtension($defaultPreview);
-				$this->filename = $defaultPreview;
+				$this->setFilename($defaultPreview);
+				$ext = $this->getExtension();
 
 				if(in_array($ext, ['jpg', 'jpeg', 'png', 'gif']))
 				{
-					return $this->createImage();
+					return $this->createInputImage();
 				}
 				else
 				{
-					$this->throwException("Preview image must be jpg, jpeg, png or gif.");
+					$this->throwException("Default preview image format must be jpg, jpeg, png or gif.");
 				}
 			}
 			else
@@ -104,11 +104,10 @@ class PreviewImage extends \gozoro\image\Image
 		}
 		else
 		{
-			$ext = self::parseExtension($this->filename);
+			$ext = $this->getExtension();
 			$this->throwException("Unknow image format - $ext.");
 		}
 	}
-
 
 	/**
 	 * Returns original image file.
@@ -125,8 +124,9 @@ class PreviewImage extends \gozoro\image\Image
 	 */
 	public function getEncryptName()
 	{
-		$ext = $this->getExtension();
-		$key = $this->getOriginalFilename().';';
+		$original = parent::getFilename();
+		$ext = static::parseExtension($original);
+		$key = $original.';';
 		foreach($this->operations as $operation)
 		{
 			$key .= $operation['method'].'(';
