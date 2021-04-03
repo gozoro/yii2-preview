@@ -124,8 +124,8 @@ class PreviewImage extends \gozoro\image\Image
 	 */
 	public function getEncryptName()
 	{
-		$original = parent::getFilename();
-		$ext = static::parseExtension($original);
+		$original = $this->getOriginalFilename();
+		$ext = $this->getExtension();
 		$key = $original.';';
 		foreach($this->operations as $operation)
 		{
